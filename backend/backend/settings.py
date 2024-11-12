@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'corsheaders',
     'djoser',
+    'rest_framework_simplejwt.token_blacklist',
 
 ]
 
@@ -134,8 +135,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
-   "ACCESS_TOKEN_LIFETIME": timedelta(minutes=100),
+   "ACCESS_TOKEN_LIFETIME": timedelta(minutes=0.3),
    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+   "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
 
 REST_FRAMEWORK = {
@@ -144,3 +147,6 @@ REST_FRAMEWORK = {
         
     ),
 }
+
+
+AUTH_USER_MODEL = 'mainapp.CustomUser'
